@@ -3,13 +3,18 @@
     <title>ApiTimer</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="css/style.css">
   </head>
   <body>
     <div class="container">
       <div class="page-header">
         <h1>ApiTimer</h1>
       </div>
-      <div class="row">
+      <div class="row"> <!-- Error block -->
+        <div id="topAlert" class="alert alert-danger" role="alert">
+        </div>
+      </div>
+      <div class="row"> <!-- Api input fields -->
         <div class="col-sm-6">
           <div class="panel panel-primary">
             <div class="panel-heading">
@@ -37,7 +42,7 @@
     </div>
   </body>
   <script src="js/jquery-2.1.3.js"></script>
-  <script src="js/angular.js"></script>
+  <!-- <script src="js/angular.js"></script> -->
   <script src="js/bootstrap.min.js"></script>
   <script src="js/run.js"></script>
 </html>
