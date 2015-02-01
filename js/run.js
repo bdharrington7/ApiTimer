@@ -10,33 +10,33 @@ function hideError() {
   $('#topAlert').hide(500);
 }
 
-function checkEndpoints(endpoint1, endpoint2) {
+function validateEndpoints(endpoint1, endpoint2) {
   var errMsg = '';
   if (!endpoint1) {
-    errMsg = 'Api 1'
+    errMsg = 'Api A'
   }
   if (!endpoint2) {
     if (errMsg) {
       errMsg += ' and '
     }
-    errMsg += 'Api 2'
+    errMsg += 'Api B'
   }
   if (errMsg) {
     errMsg += ' must contain a value!';
     showError(errMsg);
     return false;
   }
+
+  hideError();
   return true;
 }
 
 function buttonGo() {
   // check entries in both api boxes
-  var endpoint1 = $('#endpoint1').val();
-  var endpoint2 = $('#endpoint2').val();
-  if (!checkEndpoints(endpoint1, endpoint2)) {
+  var endpoint1 = $('#endpointA').val();
+  var endpoint2 = $('#endpointB').val();
+  if (!validateEndpoints(endpoint1, endpoint2)) {
     return;
-  } else {
-    hideError();
   }
 
   // if ()
