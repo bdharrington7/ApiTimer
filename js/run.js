@@ -13,13 +13,13 @@ function hideError() {
 function validateEndpoints(endpoint1, endpoint2) {
   var errMsg = '';
   if (!endpoint1) {
-    errMsg = 'Api A'
+    errMsg = 'Api A';
   }
   if (!endpoint2) {
     if (errMsg) {
-      errMsg += ' and '
+      errMsg += ' and ';
     }
-    errMsg += 'Api B'
+    errMsg += 'Api B';
   }
   if (errMsg) {
     errMsg += ' must contain a value!';
@@ -38,6 +38,18 @@ function buttonGo() {
   if (!validateEndpoints(endpoint1, endpoint2)) {
     return;
   }
+
+  // create XHR request
+  var reqA = new XMLHttpRequest();
+  reqA.open('GET', endpoint1, true);
+  reqA.onload = function (e) {
+    window.performance.mark('mark_endA_xhr');
+    window.performance.measure('measure_xhrA', 'mark_startA_xhr', 'mark_endA_xhr');
+    console.log('returned', e);
+  }
+  window.performance.mark('mark_startA_xhr');
+  reqA.send();
+  console.log('request sent');
 
   // if ()
   console.log(endpoint2 ? true : false);
