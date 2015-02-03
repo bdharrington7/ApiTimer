@@ -57,3 +57,6 @@ function buttonGo() {
 }
 
 $('#buttonGo').on('click', buttonGo);
+$('#httpMethodA').on('change', function() {
+  $('#httpMethodB').val($('#httpMethodA').val());
+});
