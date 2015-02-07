@@ -1,10 +1,23 @@
 // app.js
-var http = require('http');
 var express = require('express');
+var app = express();
+var http = require('http');
+var server = http.createServer(app);
 var path = require('path');
+var io = require('socket.io')(server);
 var port = 3000;
 
-var app = express();
+io.on('connection', function(socket) {
+    console.log('socket.io connected');
+    socket.on('request', function(data) {
+      console.log('data received: ', data);
+    });
+    socket.on('disconnect', function() {
+      console.log('socket.io disconnected');
+    })
+  }
+);
+// io.listen(3001);
 
 app.use(express.static(path.join(__dirname, 'assets')));
-app.listen(port, function(){console.log('listening on port ' + port)});
+server.listen(port, function(){console.log('listening on port ' + port)});

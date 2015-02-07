@@ -2,6 +2,8 @@
 * Making api calls and timing logic
 */
 
+var socket = io();
+
 function showError(message) {
   $('#topAlert').html(message).show(500);
 }
@@ -63,20 +65,22 @@ function buttonGo() {
     return;
   }
 
+  socket.emit('request', endpoint1);
+
   // create XHR request for A
-  var reqA = createCORSRequest($('#httpMethodA').val(), endpoint1);
-  if (!reqA) {
-    throw new Error('CORS not supported');
-  }
-  reqA.onload = function (e) {
-    console.log(reqA.responseText);
-    window.performance.mark('mark_endA_xhr');
-    window.performance.measure('measure_xhrA', 'mark_startA_xhr', 'mark_endA_xhr');
-    console.log('returned', e);
-  }
-  window.performance.mark('mark_startA_xhr');
-  reqA.send();
-  console.log('request sent');
+  // var reqA = createCORSRequest($('#httpMethodA').val(), endpoint1);
+  // if (!reqA) {
+  //   throw new Error('CORS not supported');
+  // }
+  // reqA.onload = function (e) {
+  //   console.log(reqA.responseText);
+  //   window.performance.mark('mark_endA_xhr');
+  //   window.performance.measure('measure_xhrA', 'mark_startA_xhr', 'mark_endA_xhr');
+  //   console.log('returned', e);
+  // }
+  // window.performance.mark('mark_startA_xhr');
+  // reqA.send();
+  // console.log('request sent');
 
   // if ()
   console.log(endpoint2 ? true : false);
