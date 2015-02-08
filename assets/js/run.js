@@ -65,26 +65,21 @@ function buttonGo() {
     return;
   }
 
-  socket.emit('request', endpoint1);
+  var datagram = {
+    methodA: $('#httpMethodA').val(),
+    endpointA: endpoint1,
+    methodB: $('#httpMethodB').val(),
+    endpointB: endpoint2
+  }
 
-  // create XHR request for A
-  // var reqA = createCORSRequest($('#httpMethodA').val(), endpoint1);
-  // if (!reqA) {
-  //   throw new Error('CORS not supported');
-  // }
-  // reqA.onload = function (e) {
-  //   console.log(reqA.responseText);
-  //   window.performance.mark('mark_endA_xhr');
-  //   window.performance.measure('measure_xhrA', 'mark_startA_xhr', 'mark_endA_xhr');
-  //   console.log('returned', e);
-  // }
-  // window.performance.mark('mark_startA_xhr');
-  // reqA.send();
-  // console.log('request sent');
+  socket.emit('request', datagram);
+  socket.on('responseA', function(res) {
+    console.log('response A: ', res);
+  });
 
-  // if ()
-  console.log(endpoint2 ? true : false);
-  console.log(endpoint1 == '' ? '(empty)' : endpoint1);
+  socket.on('responseB', function(res) {
+    console.log('response B: ', res);
+  });
 }
 
 $('#buttonGo').on('click', buttonGo);
